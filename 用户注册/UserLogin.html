@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body onload="Load()">
+		<fieldset>
+			<legend>用户登入</legend>
+			用户名:<input type="text" name="tex" id="name" value="" />
+			<br /> 密码： <input type="password" id="paw" />
+			<br />
+			<input type="checkbox" id="ckb" />
+			<br />
+			<button onclick="Login()" onload="Load()">登入</button>
+		</fieldset>
+		<h4 id="msg"></h4>
+		<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript">
+			var msg = document.getElementById("msg")
+
+			function Login() 
+			{
+				var names = $("#name").val();
+				localStorage.setItem("name", names);
+				if($("#ckb").prop("checked")) 
+				{
+					var pwd = $("#paw").val();
+					localStorage.setItem("pwd", pwd);
+				} else 
+				{
+					localStorage.removeItem("pwd");
+				}
+			}
+
+			function Load() 
+			{
+				if(localStorage.name) 
+				{
+					$("#name").val(localStorage.getItem("name"));
+					if(localStorage.pwd) 
+					{
+						$("#paw").val(localStorage.getItem("pwd"));
+					}
+				}
+			}
+		</script>
+	</body>
+
+</html>
